@@ -1,0 +1,53 @@
+import { Canvas, Story, Meta } from "@storybook/addon-docs/blocks";
+import { Heading1 } from "./Headings";
+
+<Meta
+  title="AMC - BHHC Bootstrap/Headings/H1 - Top-Level Heading"
+  component={Heading1}
+  argTypes={{ text: "string" }}
+/>
+
+export const DefaultHeading1 = (args) => <Heading1>{args.text}</Heading1>;
+
+# Heading1 - H1 - Top-Level Heading
+
+The **Heading1** Component can be used a title for a standalone page. Code for **Heading1** can be found in the src/ui/Headings.tsx file.
+
+<Canvas>
+  <Story name="H1 - Top-Level Heading" args={{ text: "Standalone Page Title" }}>
+    {DefaultHeading1.bind({})}
+  </Story>
+</Canvas>
+
+React will render an **h1** element in the browser as:
+
+```html
+<h1 class="heading1-0-2-7">AUDIT MANGEMENT CENTER</h1>
+```
+
+The CSS class gets generated from the theme imported by the component. The theme contains the style BHHC uses with bootstrap, found in the file **site.css**.
+
+Code for the component, from **src/ui/Headings.tsx**:
+
+```typescript
+import { createUseStyles } from "react-jss";
+import { DefaultTheme } from "../../utils/themes";
+const headingStyles = DefaultTheme.headings;
+
+const useStyles = createUseStyles({
+  portalHeading: headingStyles.portalHeading,
+  heading1: headingStyles.h1,
+  heading2: headingStyles.h2,
+  heading3: headingStyles.h3,
+  heading4: headingStyles.h4,
+  heading5: headingStyles.h5,
+  heading6: headingStyles.h6,
+});
+
+//...
+
+export const Heading1 = (props: any) => {
+  const styles = useStyles();
+  return <h1 className={styles.heading1}>{props.children}</h1>;
+};
+```

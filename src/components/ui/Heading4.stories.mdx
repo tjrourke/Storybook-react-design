@@ -1,0 +1,56 @@
+import { Canvas, Story, Meta } from "@storybook/addon-docs/blocks";
+import { Heading4 } from "./Headings";
+
+<Meta
+  title="AMC - BHHC Bootstrap/Headings/H4 - Sub-section Heading"
+  component={Heading4}
+  argTypes={{ text: "string" }}
+/>
+
+export const DefaultHeading4 = (args) => <Heading4>{args.text}</Heading4>;
+
+# Heading4 - H4 - Sub-section Heading
+
+The **Heading4** Component should be used for second-level sub-sections in a site page. Code for **Heading4** can be found in the src/ui/Headings.tsx file.
+
+<Canvas>
+  <Story
+    name="H4 - Sub-section Heading"
+    args={{ text: "H4 - Sub-section Heading" }}
+  >
+    {DefaultHeading4.bind({})}
+  </Story>
+</Canvas>
+
+React will render an **h4** element in the browser as:
+
+```html
+<h4 class="heading4-0-2-10">H3 - Sub-section Heading</h4>
+```
+
+The CSS class gets generated from the theme imported by the component. The theme contains the style BHHC uses with bootstrap, found in the file **site.css**.
+
+Code for the component, from **src/ui/Headings.tsx**:
+
+```typescript
+import { createUseStyles } from "react-jss";
+import { DefaultTheme } from "../../utils/themes";
+const headingStyles = DefaultTheme.headings;
+
+const useStyles = createUseStyles({
+  portalHeading: headingStyles.portalHeading,
+  heading1: headingStyles.h1,
+  heading2: headingStyles.h2,
+  heading3: headingStyles.h3,
+  heading4: headingStyles.h4,
+  heading5: headingStyles.h5,
+  heading6: headingStyles.h6,
+});
+
+//...
+
+export const Heading4 = (props: any) => {
+  const styles = useStyles();
+  return <h4 className={styles.heading4}>{props.children}</h4>;
+};
+```

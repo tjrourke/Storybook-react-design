@@ -1,0 +1,81 @@
+import { Canvas, Story, Meta } from "@storybook/addon-docs/blocks";
+import { PortalHeading } from "./Headings";
+
+<Meta
+  title="AMC - BHHC Bootstrap/Headings/Portal Heading"
+  component={PortalHeading}
+  argTypes={{ text: "string" }}
+/>
+
+export const DefaultPortalHeading = (args) => (
+  <PortalHeading>{args.text}</PortalHeading>
+);
+
+# PortalHeading - Site Title Heading
+
+The **PortalHeading** Component is used in the main site header. Code for **PortalHeading** can be found in the src/ui/Headings.tsx file.
+
+<Canvas>
+  <Story name="Portal Heading" args={{ text: "Audit Management Center" }}>
+    {DefaultPortalHeading.bind({})}
+  </Story>
+</Canvas>
+
+JSX for the example above:
+
+```typescript
+<PortalHeading>Audit Management Center</PortalHeading>
+```
+
+React will render an **h1** element in the browser as shown below. Note that the text is rendered in uppercase.
+
+```html
+<h1 class="portalHeading-0-2-31">
+  <img
+    alt=""
+    src="/BHHC_logo.png"
+    class="d-inline-block align-middle"
+    width="40"
+    height="40"
+  />
+  Audit Management Center
+</h1>
+```
+
+The CSS class gets generated from the theme imported by the component. The theme contains the style BHHC uses with bootstrap, found in the file **site.css**.
+
+Code for the component, from **src/ui/Headings.tsx**:
+
+```typescript
+import { createUseStyles } from "react-jss";
+import { DefaultTheme } from "../../utils/themes";
+const headingStyles = DefaultTheme.headings;
+
+const useStyles = createUseStyles({
+  portalHeading: headingStyles.portalHeading,
+  heading1: headingStyles.h1,
+  heading2: headingStyles.h2,
+  heading3: headingStyles.h3,
+  heading4: headingStyles.h4,
+  heading5: headingStyles.h5,
+  heading6: headingStyles.h6,
+});
+
+export const PortalHeading = (props: any) => {
+  const styles = useStyles();
+  return (
+    <h1 className={styles.portalHeading}>
+      <img
+        alt=""
+        src="/BHHC_logo.png"
+        width="40"
+        height="40"
+        className="d-inline-block align-middle"
+      />{" "}
+      {props.children}
+    </h1>
+  );
+};
+
+//...
+```

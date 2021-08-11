@@ -1,0 +1,53 @@
+import { Canvas, Story, Meta } from "@storybook/addon-docs/blocks";
+import { Heading5 } from "./Headings";
+
+<Meta
+  title="AMC - BHHC Bootstrap/Headings/H5 - Detail Heading"
+  component={Heading5}
+  argTypes={{ text: "string" }}
+/>
+
+export const DefaultHeading5 = (args) => <Heading5>{args.text}</Heading5>;
+
+# Heading5 - H5 - Detail Heading
+
+The **Heading5** Component should be used as the heading for detail sections in a site page. Code for **Heading5** can be found in the src/ui/Headings.tsx file.
+
+<Canvas>
+  <Story name="H5 - Detail Heading" args={{ text: "H5 - Detail Heading" }}>
+    {DefaultHeading5.bind({})}
+  </Story>
+</Canvas>
+
+React will render an **h5** element in the browser as:
+
+```html
+<h5 class="heading5-0-2-17">H5 - Detail Heading</h5>
+```
+
+The CSS class gets generated from the theme imported by the component. The theme contains the style BHHC uses with bootstrap, found in the file **site.css**.
+
+Code for the component, from **src/ui/Headings.tsx**:
+
+```typescript
+import { createUseStyles } from "react-jss";
+import { DefaultTheme } from "../../utils/themes";
+const headingStyles = DefaultTheme.headings;
+
+const useStyles = createUseStyles({
+  portalHeading: headingStyles.portalHeading,
+  heading1: headingStyles.h1,
+  heading2: headingStyles.h2,
+  heading3: headingStyles.h3,
+  heading4: headingStyles.h4,
+  heading5: headingStyles.h5,
+  heading6: headingStyles.h6,
+});
+
+//...
+
+export const Heading5 = (props: any) => {
+  const styles = useStyles();
+  return <h5 className={styles.heading5}>{props.children}</h5>;
+};
+```

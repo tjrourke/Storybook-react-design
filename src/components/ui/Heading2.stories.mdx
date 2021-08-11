@@ -1,0 +1,53 @@
+import { Canvas, Story, Meta } from "@storybook/addon-docs/blocks";
+import { Heading2 } from "./Headings";
+
+<Meta
+  title="AMC - BHHC Bootstrap/Headings/H2 - Page Title"
+  component={Heading2}
+  argTypes={{ text: "string" }}
+/>
+
+export const DefaultHeading2 = (args) => <Heading2>{args.text}</Heading2>;
+
+# Heading2 - H2 - Page Title
+
+The **Heading2** Component should be used as the title of a page shown under the site header. Code for **Heading2** can be found in the src/ui/Headings.tsx file.
+
+<Canvas>
+  <Story name="H2 - Page Title" args={{ text: "Page Title" }}>
+    {DefaultHeading2.bind({})}
+  </Story>
+</Canvas>
+
+React will render an **h2** element in the browser as:
+
+```html
+<h2 class="heading2-0-2-8">Page Title</h2>
+```
+
+The CSS class gets generated from the theme imported by the component. The theme contains the style BHHC uses with bootstrap, found in the file **site.css**.
+
+Code for the component, from **src/ui/Headings.tsx**:
+
+```typescript
+import { createUseStyles } from "react-jss";
+import { DefaultTheme } from "../../utils/themes";
+const headingStyles = DefaultTheme.headings;
+
+const useStyles = createUseStyles({
+  portalHeading: headingStyles.portalHeading,
+  heading1: headingStyles.h1,
+  heading2: headingStyles.h2,
+  heading3: headingStyles.h3,
+  heading4: headingStyles.h4,
+  heading5: headingStyles.h5,
+  heading6: headingStyles.h6,
+});
+
+//...
+
+export const Heading2 = (props: any) => {
+  const styles = useStyles();
+  return <h2 className={styles.heading2}>{props.children}</h2>;
+};
+```

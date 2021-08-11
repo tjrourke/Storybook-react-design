@@ -1,0 +1,24 @@
+
+table.rounded thead th:first-child,
+table.rounded tfoot th {
+    border-top-left-radius: 20px;
+}
+
+table.rounded thead th:last-child,
+table.rounded tfoot th {
+    border-top-right-radius: 20px;
+}
+
+table th {
+    background-color: rgb(5, 86, 149); 
+    color: rgb(255, 255, 255);
+}
+
+table tbody,
+table tfoot {
+    border: 1px solid rgba(204, 204, 204, 1);
+}
+
+/* table tfoot tr {
+    padding: 60px;
+} */

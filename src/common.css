@@ -1,0 +1,18 @@
+:root {
+  --primary-color: #005695;
+  --secondary-color: "#F5F5F5";
+  --tertiary-color: #979797;
+  --quaternary-color: #efefef;
+  --actionForward-color: #469600;
+  --actionUpdate-color: #c68200;
+  --attention-color: #d4edff;
+  --noteText-color: #666666;
+  --lightBackground-color: #f3f9fd;
+  --active-color: #605f61;
+  --inactive-color: #cccccc;
+  --background-default-color: #fff;
+  font-family: '"Lato-Regular", "Lato", sans-serif';
+  font-weight: 400;
+  color: var(--primary-color);
+  font-size: 16px;
+}
